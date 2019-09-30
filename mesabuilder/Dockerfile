@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y \
 	libwayland-dev \
 	libwayland-egl-backend-dev \
 	libclang-8-dev \
-	libclc-dev=0.2.0+git20190306 \
+	libclc-dev=0.2.0+git20190306-2 \
 	wayland-protocols \
 	zlib1g-dev \
 	libglvnd-core-dev
