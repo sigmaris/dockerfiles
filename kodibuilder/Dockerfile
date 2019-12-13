@@ -8,7 +8,9 @@ RUN apt-key add /rockpkgs.key
 
 RUN echo "deb https://sigmaris.github.io/rockpkgs buster main" > /etc/apt/sources.list.d/sigmarisrockpkgs.list
 
-RUN apt-get update && apt-get install -y \
+RUN echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list
+
+RUN apt-get update && apt-get install -y -u -V \
 	autoconf \
 	automake \
 	autopoint \
@@ -129,5 +131,3 @@ RUN apt-get update && apt-get install -y \
 	uuid-dev \
 	zip \
 	zlib1g-dev
-
-RUN git clone https://github.com/sigmaris/xbmc.git kodi-src
