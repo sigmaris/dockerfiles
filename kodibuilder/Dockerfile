@@ -36,6 +36,10 @@ RUN apt-get update && apt-get install -y -u -V \
 	libavahi-common-dev \
 	libavahi-core-dev \
 	libavahi-compat-libdnssd-dev \
+	libavcodec-dev \
+	libavfilter-dev \
+	libavformat-dev \
+	libavutil-dev \
 	libbluetooth-dev \
 	libbluray-dev \
 	libbz2-dev \
@@ -93,6 +97,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libpcre3-dev \
 	libplist-dev \
 	libpng-dev \
+	libpostproc-dev \
 	libprojectm-dev \
 	libpulse-dev \
 	librapidxml-dev \
@@ -104,6 +109,8 @@ RUN apt-get update && apt-get install -y -u -V \
 	libsidplay2-dev \
 	libsmbclient-dev \
 	libsqlite3-dev \
+	libswresample-dev \
+	libswscale-dev \
 	libssh-dev \
 	libssl-dev \
 	libtag1-dev \
