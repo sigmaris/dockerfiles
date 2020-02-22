@@ -1,4 +1,8 @@
-FROM debian:buster
+ARG CODENAME
+
+FROM debian:$CODENAME
+
+ARG CODENAME
 
 RUN apt-get update && apt-get install -y apt-transport-https gnupg ca-certificates
 
@@ -6,9 +10,11 @@ COPY rockpkgs.key /
 
 RUN apt-key add /rockpkgs.key
 
-RUN echo "deb https://sigmaris.github.io/rockpkgs buster main" > /etc/apt/sources.list.d/sigmarisrockpkgs.list
+RUN echo "deb https://sigmaris.github.io/rockpkgs $CODENAME main" > /etc/apt/sources.list.d/sigmarisrockpkgs.list
 
-RUN echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list
+RUN cat /etc/apt/sources.list.d/sigmarisrockpkgs.list
+
+RUN if [ "$CODENAME" = "buster" ]; then echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list ; fi
 
 RUN apt-get update && apt-get install -y -u -V \
 	autoconf \
@@ -98,7 +104,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libplist-dev \
 	libpng-dev \
 	libpostproc-dev \
-	libprojectm-dev \
+	$([ "$CODENAME" = "buster" ] && echo libprojectm-dev || echo "") \
 	libpulse-dev \
 	librapidxml-dev \
 	libraw-dev \
