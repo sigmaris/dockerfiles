@@ -12,8 +12,6 @@ RUN apt-key add /rockpkgs.key
 
 RUN echo "deb https://sigmaris.github.io/rockpkgs $CODENAME main" > /etc/apt/sources.list.d/sigmarisrockpkgs.list
 
-RUN cat /etc/apt/sources.list.d/sigmarisrockpkgs.list
-
 RUN if [ "$CODENAME" = "buster" ]; then echo "deb http://deb.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list ; fi
 
 RUN apt-get update && apt-get install -y -u -V \
