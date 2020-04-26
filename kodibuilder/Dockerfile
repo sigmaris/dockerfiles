@@ -60,6 +60,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libegl1-mesa-dev \
 	libenca-dev \
 	libflac-dev \
+	$([ "$CODENAME" = "bullseye" ] && echo libflatbuffers-dev || echo "") \
 	libfluidsynth-dev \
 	libfmt-dev \
 	libfontconfig-dev \
@@ -104,6 +105,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libpostproc-dev \
 	$([ "$CODENAME" = "buster" ] && echo libprojectm-dev || echo "") \
 	libpulse-dev \
+	libpython3-dev \
 	librapidxml-dev \
 	libraw-dev \
 	libresid-builder-dev \
@@ -133,6 +135,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libxt-dev \
 	linux-libc-dev \
 	lsb-release \
+	meson \
 	nlohmann-json3-dev \
 	pkg-config \
 	python-dev \
