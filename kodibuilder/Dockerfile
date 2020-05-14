@@ -114,6 +114,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libshairplay-dev \
 	libsidplay2-dev \
 	libsmbclient-dev \
+	libspdlog-dev \
 	libsqlite3-dev \
 	libswresample-dev \
 	libswscale-dev \
