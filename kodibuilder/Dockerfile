@@ -104,6 +104,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libpng-dev \
 	libpostproc-dev \
 	$([ "$CODENAME" = "buster" ] && echo libprojectm-dev || echo "") \
+	libpugixml-dev \
 	libpulse-dev \
 	libpython3-dev \
 	librapidxml-dev \
@@ -113,6 +114,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	librtmp-dev \
 	libshairplay-dev \
 	libsidplay2-dev \
+	libsidutils-dev \
 	libsmbclient-dev \
 	libspdlog-dev \
 	libsqlite3-dev \
@@ -125,8 +127,10 @@ RUN apt-get update && apt-get install -y -u -V \
 	libtinyxml-dev \
 	libtinyxml2-dev \
 	libtool \
+	libturbojpeg0-dev \
 	libudev-dev \
 	libunistring-dev \
+	libusb-1.0-0-dev \
 	libva-dev \
 	libvdpau-dev \
 	libvorbis-dev \
@@ -134,6 +138,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libxrandr-dev \
 	libxslt1-dev \
 	libxt-dev \
+	libz3-dev \
 	linux-libc-dev \
 	lsb-release \
 	meson \
@@ -144,5 +149,6 @@ RUN apt-get update && apt-get install -y -u -V \
 	swig \
 	unzip \
 	uuid-dev \
+	yasm \
 	zip \
 	zlib1g-dev
