@@ -103,7 +103,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libplist-dev \
 	libpng-dev \
 	libpostproc-dev \
-	$([ "$CODENAME" = "buster" ] && echo libprojectm-dev || echo "") \
+	libprojectm-dev \
 	libpugixml-dev \
 	libpulse-dev \
 	libpython3-dev \
