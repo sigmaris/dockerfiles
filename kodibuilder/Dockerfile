@@ -55,6 +55,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libcrossguid-dev \
 	libcurl4-gnutls-dev \
 	libcwiid-dev \
+	libdav1d-dev \
 	libdbus-1-dev \
 	libdrm-dev \
 	libegl1-mesa-dev \
@@ -178,6 +179,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libtool \
 	libturbojpeg0-dev \
 	libudev-dev \
+	libudfread-dev \
 	libunistring-dev \
 	libusb-1.0-0-dev \
 	libva-dev \
