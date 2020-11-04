@@ -8,4 +8,4 @@ RUN echo "deb-src http://deb.debian.org/debian $CODENAME main" >> /etc/apt/sourc
 
 RUN apt-get update \
   && apt-get -y build-dep ffmpeg \
-  && apt-get install -y -u -V git tree wget
+  && apt-get install -y -u -V curl git libdc1394-22-dev libsrt-gnutls-dev tree wget
