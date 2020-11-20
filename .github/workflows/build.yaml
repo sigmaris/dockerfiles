@@ -36,4 +36,4 @@ jobs:
         file: ${{ matrix.name }}/Dockerfile
         platforms: linux/arm64
         push: true
-        tags: sigmaris/${{ matrix.name }}:bullseye
+        tags: ghcr.io/sigmaris/${{ matrix.name }}:bullseye

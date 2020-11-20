@@ -107,7 +107,6 @@ RUN apt-get update && apt-get install -y -u -V \
 	libprojectm-dev \
 	libpugixml-dev \
 	libpulse-dev \
-	libpython3-dev \
 	librapidxml-dev \
 	libraw-dev \
 	libresid-builder-dev \
@@ -195,7 +194,8 @@ RUN apt-get update && apt-get install -y -u -V \
 	meson \
 	nlohmann-json3-dev \
 	pkg-config \
-	python-dev \
+	$([ "$CODENAME" = "buster" ] && echo python-dev) \
+	python3-dev \
 	rapidjson-dev \
 	swig \
 	unzip \
