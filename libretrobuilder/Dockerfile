@@ -21,7 +21,6 @@ RUN apt-get update \
     libvorbis-dev \
     libvulkan-dev \
     mesa-common-dev \
-    python-minimal \
     python2.7 \
     python3 \
     qtchooser \
