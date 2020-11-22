@@ -100,6 +100,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libogg-dev \
 	libopenmpt-dev \
 	libp8-platform-dev \
+	libpcap-dev \
 	libpcre3-dev \
 	libplist-dev \
 	libpng-dev \
