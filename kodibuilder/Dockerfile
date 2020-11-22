@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libegl1-mesa-dev \
 	libenca-dev \
 	libflac-dev \
-	$([ "$CODENAME" = "bullseye" ] && echo libflatbuffers-dev || echo "") \
+	$([ "$CODENAME" = "bullseye" ] && echo libflatbuffers-dev) \
 	libfluidsynth-dev \
 	libfmt-dev \
 	libfontconfig-dev \
@@ -110,55 +110,6 @@ RUN apt-get update && apt-get install -y -u -V \
 	librapidxml-dev \
 	libraw-dev \
 	libresid-builder-dev \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-2048 || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-bsnes || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-gba || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-lynx || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-ngp || echo "") \
-	libretro-beetle-pce-fast \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-pcfx || echo "") \
-	libretro-beetle-psx \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-saturn || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-beetle-sgx || echo "") \
-	libretro-beetle-vb \
-	libretro-beetle-wswan \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-bluemsx || echo "") \
-	libretro-bsnes-mercury-accuracy \
-	libretro-bsnes-mercury-balanced \
-	libretro-bsnes-mercury-performance \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-desmume || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-dinothawr || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-fbalpha2012 || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-fbneo || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-fceumm || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-fmsx || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-fuse || echo "") \
-	libretro-gambatte \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-genesisplusgx || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-gw || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-handy || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-hatari || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-melonds || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-meteor || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-mrboom || echo "") \
-	libretro-nestopia \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-nxengine || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-o2em || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-parallel-n64 || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-pcsx-rearmed || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-pokemini || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-prboom || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-prosystem || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-quicknes || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-sameboy || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-snes9x || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-stella || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-tgbdual || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-tyrquake || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-vba-next || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-vbam || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-vecx || echo "") \
-	$([ "$CODENAME" = "bullseye" ] && echo libretro-virtualjaguar || echo "") \
 	librsvg2-bin \
 	librtmp-dev \
 	libshairplay-dev \
@@ -193,6 +144,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	lsb-release \
 	meson \
 	nlohmann-json3-dev \
+	$([ "$CODENAME" = "bullseye" ] && echo opengl-image-dev) \
 	pkg-config \
 	$([ "$CODENAME" = "buster" ] && echo python-dev) \
 	python3-dev \
