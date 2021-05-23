@@ -82,6 +82,7 @@ RUN apt-get update && apt-get install -y -u -V \
 	libheif-dev \
 	libinput-dev \
 	libiso9660-dev \
+	$([ "$CODENAME" = "bullseye" ] && echo libiso9660++-dev) \
 	libjpeg-dev \
 	libjsoncpp-dev \
 	liblcms2-dev \
