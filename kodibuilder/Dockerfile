@@ -13,4 +13,7 @@ RUN apt-get update \
   && apt-get -y -u build-dep kodi \
   && apt-get -y -u -V install \
     git \
+    libbz2-dev \
+    libmodplug-dev \
+    libwavpack-dev \
     lsb-release
