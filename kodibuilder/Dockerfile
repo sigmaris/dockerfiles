@@ -14,6 +14,12 @@ RUN apt-get update \
   && apt-get -y -u -V install \
     git \
     libbz2-dev \
+    libgles2-mesa-dev \
+    libglm-dev \
     libmodplug-dev \
+    libpcap-dev \
+    libprojectm-dev \
     libwavpack-dev \
-    lsb-release
+    libxi-dev \
+    lsb-release \
+    python2
