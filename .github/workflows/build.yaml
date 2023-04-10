@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        name:
-        - kodibuilder
-        - ffmpegbuilder
+        include:
+        - name: kodibuilder
+          release: bullseye
+        - name: ffmpegbuilder
+          release: bookworm
       fail-fast: false
     steps:
     - name: Checkout
@@ -34,4 +36,4 @@ jobs:
         file: ${{ matrix.name }}/Dockerfile
         platforms: linux/arm64
         push: true
-        tags: ghcr.io/sigmaris/${{ matrix.name }}:bullseye
+        tags: ghcr.io/sigmaris/${{ matrix.name }}:${{ matrix.release }}

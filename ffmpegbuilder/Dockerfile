@@ -1,6 +1,6 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
-RUN echo "deb-src http://deb.debian.org/debian bullseye main" >> /etc/apt/sources.list
+RUN echo "deb-src http://deb.debian.org/debian bookworm main" >> /etc/apt/sources.list
 
 RUN apt-get update \
   && apt-get -y build-dep ffmpeg \
