@@ -12,6 +12,10 @@ RUN apt-get update \
     libmodplug-dev \
     libpcap-dev \
     libprojectm-dev \
+    libtinyxml2-dev \
+    libturbojpeg0-dev \
+    libusb-1.0-0-dev \
     libwavpack-dev \
     libxi-dev \
-    lsb-release
+    lsb-release \
+    sudo
