@@ -10,6 +10,7 @@ RUN apt-get update \
   libflac-dev \
   libgles2-mesa-dev \
   libglm-dev \
+  libjsoncpp-dev \
   libmodplug-dev \
   libmpeg2-4-dev \
   libmpg123-dev \
