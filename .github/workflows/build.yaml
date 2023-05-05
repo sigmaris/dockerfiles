@@ -4,6 +4,11 @@ on:
   push:
     branches:
     - master
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize
 
 jobs:
   armbuild:
@@ -30,10 +35,108 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.CR_PAT }}
     - name: Build and push
+      id: build_and_push
+      continue-on-error: true
       uses: docker/build-push-action@v2
       with:
         context: ${{ matrix.name }}
         file: ${{ matrix.name }}/Dockerfile
         platforms: linux/arm64
-        push: true
+        push: ${{ github.event_name == 'push' }}
         tags: ghcr.io/sigmaris/${{ matrix.name }}:${{ matrix.release }}
+    - name: Report results as markdown
+      run: |
+        if [[ -e "$GITHUB_STEP_SUMMARY" ]]
+        then
+          tee_step_summary="tee -a $GITHUB_STEP_SUMMARY"
+        else
+          tee_step_summary="cat"
+        fi
+        mkdir -p 'results/${{ matrix.release }}'
+        if [[ '${{ steps.build_and_push.outcome }}' == 'success' ]]
+        then
+          out_file="results/${{ matrix.release }}/${{ matrix.name }}-failed.md"
+          printf '<details><summary>🚀 ${{ matrix.name }} Docker build suceeded 🚀 - click to expand results</summary>\n\n```\n' | $tee_step_summary > "$out_file"
+          printf '%s' '${{ matrix.name }} on ${{ matrix.release }} ${{ steps.build_and_push.outcome }}' | $tee_step_summary >> "$out_file"
+          printf '\n```\n\n</details>\n\n' | $tee_step_summary >> "$out_file"
+        else
+          out_file="results/${{ matrix.release }}/${{ matrix.name }}-ok.md"
+          printf '<details><summary>⚠️ ${{ matrix.name }} Docker build failed ⚠️ - click to expand results</summary>\n\n```\n' | $tee_step_summary > "$out_file"
+          printf '%s' '${{ matrix.name }} on ${{ matrix.release }} ${{ steps.build_and_push.outcome }}' | $tee_step_summary >> "$out_file"
+          printf '\n```\n\n</details>\n\n' | $tee_step_summary >> "$out_file"
+        fi
+    - name: Upload results artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: results
+        path: results/*
+
+  comment:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-22.04
+    needs: armbuild
+    steps:
+    - name: Download results artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: results
+        path: results
+    
+    - name: Comment on PR
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        retries: 3
+        script: |
+          const fs = require('fs/promises');
+          const path = require('path');
+
+          // Get the existing comments.
+          const { data: comments } = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+
+          // Find any comment already made by the bot.                                                                                                    
+          const botComment = comments.find(comment => {
+            return comment.user.type === 'Bot' && comment.body.includes('Docker build results');
+          })
+
+          var out_parts = [];
+          var exit_code = 0;
+          // 2. Prepare format of the comment
+          const dirents = await fs.readdir('results', { withFileTypes: true });
+          for (const dirent of dirents) {
+            out_parts.push(`### ${dirent.name}\n`);
+            const res = path.resolve('results', dirent.name);
+            if (dirent.isDirectory()) {
+              const files = await fs.readdir(res, { withFileTypes: true });
+              for (const dirent2 of files) {
+                if (dirent2.name.endsWith('-failed.md')) {
+                  exit_code = 1;
+                }
+                out_parts.push(await fs.readFile(path.resolve(res, dirent2.name), { encoding: 'utf8' }));
+              }
+            }
+          }
+          const output = out_parts.join('');
+
+          // If we have a comment, update it, otherwise create a new one
+          if (botComment) {
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: botComment.id,
+              body: output
+            });
+          } else {
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+          }
+
+          return exit_code;
