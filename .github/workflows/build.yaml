@@ -19,7 +19,7 @@ jobs:
           platforms: linux/arm64,linux/arm/v7
         - name: aarch64-linux-crossbuilder
           platforms: linux/amd64
-          release: bullseye
+          release: bookworm
       fail-fast: false
     steps:
     - name: Checkout
