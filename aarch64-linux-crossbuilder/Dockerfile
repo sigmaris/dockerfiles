@@ -5,4 +5,4 @@ RUN apt-get update && \
     device-tree-compiler dosfstools flex gcc-aarch64-linux-gnu \
     gcc-arm-none-eabi git jq kmod libelf-dev libfdt-dev libpython3-dev \
     libssl-dev lzop mtools parted python3 python3-pyelftools \
-    python3-setuptools rsync sudo swig
+    python3-setuptools rsync sudo swig zstd
