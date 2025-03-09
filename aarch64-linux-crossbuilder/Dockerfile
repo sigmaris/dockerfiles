@@ -1,4 +1,5 @@
-FROM debian:bookworm
+ARG RELEASE
+FROM debian:${RELEASE}
 
 RUN dpkg --add-architecture arm64 && apt-get update && \
   apt-get install -y bc bison build-essential cpio debhelper \

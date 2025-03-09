@@ -1,6 +1,8 @@
-FROM debian:bookworm
+ARG RELEASE
+FROM debian:$RELEASE
+ARG RELEASE
 
-RUN echo "deb-src http://deb.debian.org/debian bookworm main" >> /etc/apt/sources.list
+RUN echo "deb-src http://deb.debian.org/debian $RELEASE main" >> /etc/apt/sources.list
 
 RUN apt-get update \
   && apt-get -y -u build-dep kodi \
