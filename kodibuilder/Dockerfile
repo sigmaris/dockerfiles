@@ -2,7 +2,7 @@ ARG RELEASE
 FROM debian:$RELEASE
 ARG RELEASE
 
-RUN echo "deb-src http://deb.debian.org/debian $RELEASE main" >> /etc/apt/sources.list
+RUN sed -i -e 's/^Types: deb$/Types: deb deb-src/g' /etc/apt/sources.list.d/debian.sources
 
 RUN apt-get update \
 	&& apt-get -y -u build-dep kodi \
