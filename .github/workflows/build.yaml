@@ -5,12 +5,12 @@ on:
     branches:
     - master
 
-jobs:   
+jobs:
   build:
     strategy:
       matrix:
         name: [kodibuilder, ffmpegbuilder, aarch64-linux-crossbuilder]
-        release: [bookworm, trixie]
+        release: [trixie]
         include:
         - name: kodibuilder
           platforms: linux/arm64,linux/arm/v7
