@@ -27,6 +27,8 @@ jobs:
         exclude:
         - name: gstbuilder
           release: trixie
+        - name: kodibuilder
+          release: forky
       fail-fast: false
     runs-on: ubuntu-24.04${{ contains(matrix.platforms, 'linux/arm') && '-arm' || '' }}
     steps:
