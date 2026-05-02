@@ -13,5 +13,5 @@ RUN apt-get update \
 	sudo \
 	unzip
 
-RUN curl -L -o "qairt-${QAIRT_VERSION}.zip" "https://softwarecenter.qualcomm.com/api/download/software/sdks/Qualcomm_AI_Runtime_Community/All/${QAIRT_VERSION}/v${QAIRT_VERSION}.zip"
-RUN unzip "qairt-${QAIRT_VERSION}.zip" && mv "qairt/${QAIRT_VERSION}" /opt/qairt && rmdir qairt && rm "qairt-${QAIRT_VERSION}.zip"
+RUN curl -L -o "/tmp/qairt-${QAIRT_VERSION}.zip" "https://softwarecenter.qualcomm.com/api/download/software/sdks/Qualcomm_AI_Runtime_Community/All/${QAIRT_VERSION}/v${QAIRT_VERSION}.zip"
+RUN unzip "/tmp/qairt-${QAIRT_VERSION}.zip" && mv "qairt/${QAIRT_VERSION}" /opt/qairt && rmdir qairt && rm "/tmp/qairt-${QAIRT_VERSION}.zip"
