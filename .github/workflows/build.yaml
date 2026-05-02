@@ -9,15 +9,24 @@ jobs:
   build:
     strategy:
       matrix:
-        name: [kodibuilder, ffmpegbuilder, aarch64-linux-crossbuilder]
-        release: [trixie]
+        name:
+        - aarch64-linux-crossbuilder
+        - ffmpegbuilder
+        - gstbuilder
+        - kodibuilder
+        release: [trixie, forky]
         include:
-        - name: kodibuilder
-          platforms: linux/arm64,linux/arm/v7
-        - name: ffmpegbuilder
-          platforms: linux/arm64,linux/arm/v7
         - name: aarch64-linux-crossbuilder
           platforms: linux/amd64
+        - name: ffmpegbuilder
+          platforms: linux/arm64,linux/arm/v7
+        - name: gstbuilder
+          platforms: linux/arm64
+        - name: kodibuilder
+          platforms: linux/arm64,linux/arm/v7
+        exclude:
+        - name: gstbuilder
+          release: trixie
       fail-fast: false
     runs-on: ubuntu-24.04${{ contains(matrix.platforms, 'linux/arm') && '-arm' || '' }}
     steps:
